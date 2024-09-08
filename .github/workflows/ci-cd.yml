@@ -1,0 +1,50 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - release
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  typing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: ./.github/actions/install
+        with:
+          python-version: "3.12"
+
+      - name: Test typing with pyright
+        run: poetry run pyright
+
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: ./.github/actions/install
+        with:
+          python-version: "3.12"
+
+      - name: Lint with ruff
+        run: poetry run ruff check
+
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: ./.github/actions/install
+        with:
+          python-version: "3.12"
+
+      - name: Run tests
+        run: poetry run pytest
