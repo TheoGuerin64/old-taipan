@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Taipan is a simple imperative programming language."
 authors = ["Theo Guerin"]
 packages = [{include = "taipan"}]
+repository = "https://github.com/TheoGuerin64/taipan"
 
 [tool.poetry.scripts]
 taipan = "taipan.__main__:cli"
