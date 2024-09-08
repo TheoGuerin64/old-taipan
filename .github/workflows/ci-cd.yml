@@ -48,3 +48,20 @@ jobs:
 
       - name: Run tests
         run: poetry run pytest
+
+  deploy:
+    needs: [typing, linting, testing]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: ./.github/actions/install
+        with:
+          python-version: "3.12"
+
+      - name: Package project
+        run: poetry build
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
