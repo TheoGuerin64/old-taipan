@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "taipan"
+name = "taipan-cli"
 version = "0.1.0"
 description = "Taipan is a simple imperative programming language."
 authors = ["Theo Guerin"]
