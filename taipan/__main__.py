@@ -6,7 +6,8 @@ from taipan import compiler
 
 
 @click.group()
-def cli() -> None:
+@click.version_option(None, "-v", "--version")
+def cli(v) -> None:
     """Taipan programming language CLI"""
 
 
